@@ -28,7 +28,16 @@ class Welcome extends CI_Controller {
 		$data['json'] = json_decode($response, true);
 		// var_dump($data);
 		// die();
-		echo $response;
+		// echo $response;
+	}
+
+	public function login()
+	{
+    $postdata=json_decode($_POST['formdata'],true);
+    $email = $postdata['email'];
+    $pass = $postdata['pass'];
+    $array = ['email' => $email, 'password' => $pass, 'error' => "Oops, didn't work..."];
+    echo json_encode($array);
 	}
 }
 
