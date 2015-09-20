@@ -19,8 +19,23 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{	
-		
 		$this->load->view('apiTest');
+	}
+	public function load_loginReg()
+	{
+	    $this->load->view('ng/partials/loginReg.php');
+	}
+	public function load_main()
+	{
+	    $this->load->view('ng/partials/main.php');
+	}
+	public function login()
+	{
+	    $postdata=json_decode($_POST['formdata'],true);
+	    $email = $postdata['email'];
+	    $pass = $postdata['pass'];
+	    $array = ['email' => $email, 'password' => $pass, 'error' => "Oops, didn't work..."];
+	    echo json_encode($array);
 	}
 	public function players()
 	{
@@ -28,16 +43,7 @@ class Welcome extends CI_Controller {
 		$data['json'] = json_decode($response, true);
 		// var_dump($data);
 		// die();
-		// echo $response;
-	}
-
-	public function login()
-	{
-    $postdata=json_decode($_POST['formdata'],true);
-    $email = $postdata['email'];
-    $pass = $postdata['pass'];
-    $array = ['email' => $email, 'password' => $pass, 'error' => "Oops, didn't work..."];
-    echo json_encode($array);
+		echo $response;
 	}
 }
 
